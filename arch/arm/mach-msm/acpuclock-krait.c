@@ -533,6 +533,13 @@ static int acpuclk_krait_set_rate(int cpu, unsigned long rate,
 	vdd_data.vdd_core = calculate_vdd_core(tgt) + minus_vc;
 	vdd_data.ua_core = tgt->ua_core;
 
+	/* Overvolt for CPU2 */
+	if (cpu == 2 && rate > 702000)
+		vdd_data.vdd_core += (100 * 1000);
+
+	if (cpu != 2)
+		vdd_data.vdd_core -= (100 * 1000);
+
 	/* Disable AVS before voltage switch */
 	if (reason == SETRATE_CPUFREQ && drv.scalable[cpu].avs_enabled) {
 		AVS_DISABLE(cpu);
