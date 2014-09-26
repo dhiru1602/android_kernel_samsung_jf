@@ -383,9 +383,9 @@ enum vdd_dig_levels {
 
 static int vdd_uv[] = {
 	[VDD_DIG_NONE]    =       0,
-	[VDD_DIG_LOW]     =  945000,
-	[VDD_DIG_NOMINAL] = 1050000,
-	[VDD_DIG_HIGH]    = 1150000
+	[VDD_DIG_LOW]     =  845000,
+	[VDD_DIG_NOMINAL] =  950000,
+	[VDD_DIG_HIGH]    = 1050000
 };
 
 ssize_t get_gpu_vdd_levels_str(char *buf)
@@ -404,11 +404,13 @@ ssize_t get_gpu_vdd_levels_str(char *buf)
 
 void set_gpu_vdd_levels(int uv_tbl[])
 {
+#if 0
 	int i;
 	for (i = 1; i <= 3; i++)
 	{
 		vdd_uv[i] = uv_tbl[i - 1];
 	}
+#endif
 }
 
 static int set_vdd_dig_8960(struct clk_vdd_class *vdd_class, int level)
