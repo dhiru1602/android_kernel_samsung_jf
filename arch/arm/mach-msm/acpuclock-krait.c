@@ -971,7 +971,7 @@ ssize_t acpuclk_get_vdd_levels_str(char *buf) {
 
 /* updated to use uv required by 8x60 architecture - faux123 */
 void acpuclk_set_vdd(unsigned int khz, int vdd_uv) {
-
+#if 0
 	int i;
 	unsigned int new_vdd_uv;
 
@@ -991,6 +991,7 @@ void acpuclk_set_vdd(unsigned int khz, int vdd_uv) {
 	}
 	pr_warn("acpuclock: user voltage table modified!\n");
 	mutex_unlock(&driver_lock);
+#endif
 }
 
 #ifdef CONFIG_CPU_FREQ_MSM
